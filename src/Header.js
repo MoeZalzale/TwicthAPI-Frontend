@@ -12,7 +12,7 @@ position: relative;
 top: 0;
 min-width: 100%;
 z-index: 20;
-height: 50px;
+height: 200px;
 
 
 `
