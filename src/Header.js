@@ -6,13 +6,12 @@ function Header() {
     )
 }
 const Container = styled.div`
-background-color: red;
-flex:0.1;
+background-color: var(--bluee);
 position: relative; 
 top: 0;
 min-width: 100%;
 z-index: 20;
-height: 200px;
+height: 50px;
 
 
 `

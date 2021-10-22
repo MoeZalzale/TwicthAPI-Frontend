@@ -12,7 +12,7 @@ function Sidebar() {
 
 const Container = styled.div`
 flex: 0.1;
-background-color: rgb(26, 147, 163) ;
+background-color: var(--bluee) ;
 height: 100%;
 
 
