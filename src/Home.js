@@ -1,33 +1,66 @@
-import React from 'react'
-import styled from 'styled-components'
-import Sidebar from './Sidebar'
+import React, {useState,useEffect} from 'react'
 import Header from './Header'
-function Home() {
+import {motion, AnimatePresence, AnimateSharedLayout} from 'framer-motion'
+import ClipsList from './ClipsList'
+
+
+const Home = () => {
+
+    const [games,updateGames]=useState([])
+    const [clipsWeek,updateClipsWeek]= useState([])
+    const date = new Date().toISOString().match(/(.+)[A-Z][0-9.:]+[A-Z]$/)[1]
+
+    const getClips=async ()=>{
+        const response = await fetch(`/api/clips/${date}`)
+        const data = await response.json()
+        updateClipsWeek(data)
+
+
+    }
+
+    const getGames=async ()=>{
+        const response = await fetch('/api/games')
+        const data = await response.json()
+        updateGames(data)
+
+
+    }
+
+    useEffect(()=>{
+        getGames()
+        getClips()
+
+    },[])
+
     return (
-       <Container>
-           <Header/>
-           <Body>
-        <Sidebar/>
+    <>
+    <Header/>
+    <h1 className='p-5 text-main text-3xl font-header'>Top  Games</h1>
+    <div className='flex overflow-x-scroll min-w-full'>
+        {games?.map(game => 
+        <a href = {`/games/${game.gid}`}>
+        <img 
+        className=' min-w-[200px] m-5 border-main rounded shadow-lg transition ease-out duration-300  hover:shadow-main hover:scale-101 hover:-translate-y-1'
+        src={game.thumbnail.replace('{width}x{height}', `200x300`)}
 
-        </Body>
+        
+        >
 
-       </Container>
+        </img>
+        </a>
+            )}
+
+    </div>
+
+
+
+    <h1 className='p-5 text-main text-3xl font-header'>Clips of the week</h1>
+                
+            <ClipsList
+            api={`/api/clips/${date}`}/>
+   
+    </>
     )
 }
-
-const Container = styled.div `
-display: flex;
-flex-direction: column;
-height: 100vh;
-width: 100vw;
-
-
-`
-
-const Body = styled.div`
-flex:1;
-display: flex;
-
-`
 
 export default Home
