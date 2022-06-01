@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import {subHeaders} from './reusable'
 import {motion} from 'framer-motion'
 import Header from './Header'
+import {url} from './backend'
 const GamesPage = () => {
     const gameDimensions = {
         'width': '200',
@@ -14,7 +15,7 @@ const GamesPage = () => {
 
 
     const getGames = async () =>{
-        const response = await fetch('/api/games')
+        const response = await fetch(`${url}/api/games`)
         const data = await response.json()
         updateGames(data)
     }

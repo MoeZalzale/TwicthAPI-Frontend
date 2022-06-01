@@ -2,6 +2,7 @@ import React, {useState,useEffect} from 'react'
 import { useParams} from 'react-router'
 import ClipsList from './ClipsList'
 import Header from './Header'
+import {url} from './backend'
 
 const GamesClips = () => {
 
@@ -10,12 +11,12 @@ const GamesClips = () => {
     const gid = useParams().id 
     
     const getGame = async ()=>{
-        const resp = await fetch(`/api/games/${gid}`)
+        const resp = await fetch(`${url}/api/games/${gid}`)
         const data = await resp.json()
         updateGame(data)
     }
     const getClips = async ()=>{
-        const resp = await fetch(`/api/clips/game/${gid}`)
+        const resp = await fetch(`${url}/api/clips/game/${gid}`)
         const data = await resp.json()
         updateClips(data)
     }
@@ -46,7 +47,7 @@ const GamesClips = () => {
         
 
            <ClipsList
-           api={`/api/clips/game/${gid}`}/>
+           api={`${url}/api/clips/game/${gid}`}/>
        
 
 

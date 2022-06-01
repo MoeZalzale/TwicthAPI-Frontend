@@ -2,7 +2,7 @@ import React, {useState,useEffect} from 'react'
 import Header from './Header'
 import {motion, AnimatePresence, AnimateSharedLayout} from 'framer-motion'
 import ClipsList from './ClipsList'
-
+import {url} from './backend'
 
 const Home = () => {
 
@@ -11,7 +11,7 @@ const Home = () => {
     const date = new Date().toISOString().match(/(.+)[A-Z][0-9.:]+[A-Z]$/)[1]
 
     const getClips=async ()=>{
-        const response = await fetch(`/api/clips/${date}`)
+        const response = await fetch(`${url}/api/clips/${date}`)
         const data = await response.json()
         updateClipsWeek(data)
 
@@ -19,7 +19,7 @@ const Home = () => {
     }
 
     const getGames=async ()=>{
-        const response = await fetch('/api/games')
+        const response = await fetch(`${url}/api/games`)
         const data = await response.json()
         updateGames(data)
 
@@ -57,7 +57,7 @@ const Home = () => {
     <h1 className='p-5 text-main text-3xl font-header'>Clips of the week</h1>
                 
             <ClipsList
-            api={`/api/clips/${date}`}/>
+            api={`${url}/api/clips/${date}`}/>
    
     </>
     )

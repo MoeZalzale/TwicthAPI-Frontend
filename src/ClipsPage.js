@@ -8,7 +8,7 @@ import {TwitchClip} from 'react-twitch-embed'
 import ReactPlayer from 'react-player'
 import {motion, useViewportScroll, useAnimation} from 'framer-motion'
 import { duration } from '@mui/material'
-
+import {url} from './backend'
 
 
 function ClipsPage() {
@@ -22,7 +22,7 @@ const [isFetching, updateFetching]=useState(false)
 
 
 const  getClips = async () =>{
-const response = await fetch(`/api/clips?f=${from_to['from']}&t=${from_to['to']}`)
+const response = await fetch(`${url}/api/clips?f=${from_to['from']}&t=${from_to['to']}`)
 const data = await response.json()
 let arr= [...clips,...data]
 updateClips(arr)
