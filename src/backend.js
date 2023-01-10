@@ -1,1 +1,1 @@
-export const url= 'https://twitchclipapi.herokuapp.com'
+export const url= 'https://twitch-clip-api.onrender.com'

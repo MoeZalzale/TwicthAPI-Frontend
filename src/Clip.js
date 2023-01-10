@@ -82,6 +82,7 @@ const Clip = ({video,clip_id,title,views,gameID,streamerName,created,thumbnail,g
     className='rounded'
     layoutId='selected-v'
      onPlay ={onPlay}
+    //  onClick ={() => updateSelected(true)}
      src={video}
      controls
      preload='none'
